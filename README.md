@@ -100,6 +100,7 @@ Example logs:
 - 📡 Add Telegram or Twilio SMS notifications.
 - 📊 Create a web dashboard to monitor endpoints in real-time.
 - 📈 Store monitoring history in a database.
+- ⌨️ Create a CLI command that receives a file of IP addresses as argument
 
 ## 👨‍💻 Contributing
 
@@ -114,21 +115,3 @@ This project is licensed under the MIT License.
 1. Replace `your-username` with your GitHub username in the **clone** section.
 2. Add a **LICENSE file** (optional but recommended).
 3. Customize the **Future Improvements** section if you plan to add more features.
-
-Let me know if you want changes! 🚀
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
