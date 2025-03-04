@@ -5,12 +5,23 @@ import ping, { PingConfig } from 'ping';
 
 export async function checkHost(
   hosts: string[],
+  batchSize: number,
   options?: PingConfig
 ) {
   try {
-    for (const host of hosts) {
-      const response = await ping.promise.probe(host, options);
-      console.log(response);
+    for (let i = 0; i < hosts.length; i += batchSize) {
+      const batch = hosts.slice(i, i + batchSize);
+      const results = await Promise.all(
+        batch.map((host) => ping.promise.probe(host, options))
+      );
+
+      results.forEach((res, idx) => {
+        console.log(
+          `${batch[idx]}: ${res.alive ? '✅ Alive' : '❌ Down'}`
+        );
+      });
+
+      console.log('Batch complete');
     }
   } catch (error) {
     console.error(`Error pinging ${hosts}`, error);
