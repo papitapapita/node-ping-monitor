@@ -24,6 +24,7 @@ checkHost(
     '172.16.30.21'
   ],
   10,
+  console.log,
   {
     timeout: 2,
     min_reply: 5

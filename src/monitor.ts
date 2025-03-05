@@ -6,7 +6,7 @@ import ping, { PingConfig, PingResponse } from 'ping';
 export async function checkHost(
   hosts: string[],
   batchSize: number,
-  callback?: (result: PingResponse) => void,
+  callback: (result: PingResponse) => void,
   options?: PingConfig
 ) {
   try {
@@ -20,9 +20,7 @@ export async function checkHost(
         console.log(
           `${batch[idx]}: ${res.alive ? '✅ Alive' : '❌ Down'}`
         );
-        if (callback) {
-          callback(res);
-        }
+        callback(res);
       });
 
       console.log('Batch complete');
