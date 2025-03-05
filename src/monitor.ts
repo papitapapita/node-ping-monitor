@@ -1,4 +1,4 @@
-import ping, { PingConfig } from 'ping';
+import ping, { PingConfig, PingResponse } from 'ping';
 
 //Validate the host with a regex to verify it is an ip
 //const hosts = ['172.16.30.234'];
@@ -6,6 +6,7 @@ import ping, { PingConfig } from 'ping';
 export async function checkHost(
   hosts: string[],
   batchSize: number,
+  callback?: (result: PingResponse) => void,
   options?: PingConfig
 ) {
   try {
@@ -19,6 +20,9 @@ export async function checkHost(
         console.log(
           `${batch[idx]}: ${res.alive ? '✅ Alive' : '❌ Down'}`
         );
+        if (callback) {
+          callback(res);
+        }
       });
 
       console.log('Batch complete');
