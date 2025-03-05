@@ -1,32 +1,48 @@
-import { checkHost } from './monitor';
+import { checkHost } from './monitor.js';
+import 'dotenv/config';
+//import { config } from './config';
+import { analyzeResults } from './notifier.js';
+//------------------------------------//
 
-checkHost(
-  [
-    '172.16.30.2',
-    '172.16.30.3',
-    '172.16.30.4',
-    '172.16.30.5',
-    '172.16.30.6',
-    '172.16.30.7',
-    '172.16.30.8',
-    '172.16.30.9',
-    '172.16.30.10',
-    '172.16.30.11',
-    '172.16.30.12',
-    '172.16.30.13',
-    '172.16.30.14',
-    '172.16.30.15',
-    '172.16.30.16',
-    '172.16.30.17',
-    '172.16.30.18',
-    '172.16.30.19',
-    '172.16.30.20',
-    '172.16.30.21'
-  ],
-  10,
-  console.log,
-  {
+import dotenv from 'dotenv';
+dotenv.config();
+
+export const config = {
+  hosts: process.env.HOSTS?.split(','),
+  smtpHost: process.env.SMTP_HOST,
+  smtpPort: Number(process.env.SMTP_PORT),
+  emailUser: process.env.EMAIL_USER,
+  emailPass: process.env.EMAIL_PASS,
+  emailTarget: process.env.EMAIL_TARGET
+};
+
+console.log(config);
+
+checkHost({
+  hosts: config.hosts!,
+  callback: analyzeResults,
+  options: {
     timeout: 2,
     min_reply: 5
   }
-);
+});
+/*
+async function main() {
+  //checkResults
+  for (const result of results) {
+    if (!result.isAlive) {
+      failedAPs.add(result.host);
+      await sendNotification(result);
+    }
+  }
+
+  logResults(results);
+
+  const delay = failedAPs.size > 0 ? 10000 : 30000;
+  setTimeout(main, delay);
+}
+
+async function sendNotification(result) {
+  sendEmail(`${result.host} está caído a las ${hora}`);
+}
+*/
