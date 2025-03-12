@@ -19,7 +19,7 @@ async function notifyFailure(result: PingResponse) {
       to: config.emailTarget,
       subject: `AP CAÍDA ${result.host}`,
       text: `🚨 AP ${result.host} es inalcanzable. Por favor revisar`,
-      html: `<p>🚨 <b>ALERTA: </b><br>Caida paquetes: ${result.packetLoss}%<br>Promedio: ${result.avg}<br>Hora: ${new Date()}</p>`
+      html: `<p>🚨 <b>ALERTA: </b><br>AP: ${result.host}<br>Caida paquetes: ${result.packetLoss}%<br>Promedio: ${result.avg}<br>Hora: ${new Date()}</p>`
     });
 
     console.log(`📧 Email sent: ${info.messageId}`);
