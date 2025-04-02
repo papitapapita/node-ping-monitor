@@ -37,7 +37,7 @@ export async function checkHost({
           monitoring,
           options
         });
-      }, 30000);
+      }, 5000);
     }
   } catch (error) {
     console.error(`Error pinging ${hosts}`, error);

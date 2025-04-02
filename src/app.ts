@@ -14,8 +14,6 @@ export const config = {
   emailTarget: process.env.EMAIL_TARGET
 };
 
-console.log(config);
-
 checkHost({
   hosts: config.hosts!,
   callback: analyzeResults,

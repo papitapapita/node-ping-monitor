@@ -1,4 +1,4 @@
-|# Node.js Ping Monitoring System
+# Node.js Ping Monitoring System
 
 A simple **Node.js monitoring tool** that **pings multiple endpoints** at a set interval and sends **email notifications** if an endpoint goes down.
 
